@@ -3,15 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://garden-j.github.io/react-masterclass/react-todo-app",
+  "homepage": "https://garden-j.github.io/react-todo-app/",
   "scripts": {
     "start": "npm run dev -- --open",
     "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "build": "vite build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.83.0",
