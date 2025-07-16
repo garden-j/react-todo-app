@@ -1,6 +1,29 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { categoryListState, IToDO, toDoState } from "../atoms";
 import { Categories } from "../atoms";
+import styled from "styled-components";
+import { Btn } from "./ToDoList";
+
+const Span = styled.span`
+  font-size: 18px;
+  margin: 0 10px 0 30px;
+  border: 2px;
+  background-color: whitesmoke;
+  color: black;
+  padding: 10px 18px 10px 18px;
+  border-radius: 1cqi;
+  border-color: whitesmoke;
+  &:hover {
+    background-color: ${(props) => props.theme.accentColor};
+    color: whitesmoke;
+  }
+`;
+
+const List = styled.div`
+  display: grid;
+  grid-template-columns: 10fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+`;
 
 function ToDo({ text, category, id }: IToDO) {
   const categoryList = useRecoilValue(categoryListState);
@@ -21,31 +44,17 @@ function ToDo({ text, category, id }: IToDO) {
   };
   return (
     <li>
-      <span>{text}</span>
-      {categoryList?.map(
-        (cat) =>
-          category !== cat && (
-            <button key={cat} name={cat} onClick={onClick}>
-              {cat}
-            </button>
-          )
-      )}
-
-      {/* {category !== "DOING" && (
-        <button name={"DOING"} onClick={onClick}>
-          Doing
-        </button>
-      )}
-      {category !== "TO_DO" && (
-        <button name={"TO_DO"} onClick={onClick}>
-          To Do
-        </button>
-      )}
-      {category !== "DONE" && (
-        <button name={"DONE"} onClick={onClick}>
-          Done
-        </button>
-      )} */}
+      <List>
+        <Span>{text}</Span>
+        {categoryList?.map(
+          (cat) =>
+            category !== cat && (
+              <Btn key={cat} name={cat} onClick={onClick}>
+                {cat}
+              </Btn>
+            )
+        )}
+      </List>
     </li>
   );
 }
